@@ -24,3 +24,13 @@ function setTime() {
   }
 
   setTime();
+
+  function startGame() {
+
+    
+  }
+
+  function selectAnswer() {
+
+
+  }
