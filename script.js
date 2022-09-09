@@ -66,9 +66,10 @@ var questions = [
 ]
 
 var timeLeft = 60;
+var timeInterval;
 
 function setTime() {
-    var timeInterval = setInterval(function () {
+    timeInterval = setInterval(function () {
 
       if (timeLeft > 1) {
         timerEl.textContent = "Time: " + timeLeft;
@@ -155,7 +156,7 @@ if (shuffledQuestions.length > currentQuestionIndex + 1) {
 }
 
 function quizEnd() {
-  clearInterval(timeLeft);
+  clearInterval(timeInterval);
   scoreEl.textContent = timeLeft;
 }
 
