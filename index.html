@@ -11,7 +11,7 @@
   <div class = "header">
     <h1 id= "scores" >View high scores</h1>
     <h1 id= "time" style="text-align:right"></h1>
-  <div class = "intro">
+  <div class = "intro" id = "intro">
     <h3>Coding Quiz Challenge</h3>
     <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
   </div>
@@ -25,11 +25,17 @@
           <button class = "btn">Answer 3</button>
           <button class = "btn">Answer 4</button>
         </div>
+      <div id="alert"></div>
       </div>
       <div class = "controls">
         <button id = "start-btn" class = "start-btn btn">Start Quiz</button>
       </div>
     </div>
+  </div>
+  <div id = "highscores" class = "hide">
+    <h2 id = "score">Your score is: </h2>
+    <input placeholder="Your initials here" />
+    <button id="initals-button"></button>
   </div>
     <script src="./script.js"></script>
 </body>
