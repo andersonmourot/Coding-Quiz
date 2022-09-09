@@ -45,8 +45,13 @@ color: rgb(192, 121, 192)
     margin-right: 50px;
 }
 
-.button-list {
+.button-list > button {
     display: grid;
+    font-size: 30px;
+    margin-top: 5px;
+    margin-left: 15px;;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .btn {
@@ -61,4 +66,17 @@ color: rgb(192, 121, 192)
 
 .hide {
     display: none;
+}
+
+#question {
+    font-size: 30px;
+    margin: 15px;;
+}
+
+#start-btn {
+    font-size: 30px;
+    margin-top: 5px;
+    margin-left: 15px;;
+    border-radius: 10px;
+    padding: 10px;
 }
