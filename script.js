@@ -152,6 +152,7 @@ if (shuffledQuestions.length > currentQuestionIndex + 1) {
   questionCont.classList.add("hide");
   highscores.classList.remove("hide");
   quizEnd()
+  saveScore()
 }
 }
 
@@ -174,3 +175,10 @@ function clearStatusClass(element) {
   element.classList.remove("wrong")
 }
 
+function saveScore () {
+  var scoreList = document.createElement("ul")
+  var initialList = document.createElement("li")
+  
+  localStorage.setItem("High Score", scoreEl);
+  body.appendChild(scoreList)
+}
