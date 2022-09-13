@@ -10,6 +10,7 @@ var highscores = document.getElementById("highscores");
 var scoreEl = document.getElementById("score");
 var input = document.querySelector("input");
 var initialsBTN = document.getElementById("initials-button");
+var scoreBtn = document.getElementById("scores");
 
 
 var shuffledQuestions, currentQuestionIndex
@@ -176,9 +177,11 @@ function clearStatusClass(element) {
 }
 
 function saveScore () {
+  var initials = document.getElementById("initial-input").value;
   var scoreList = document.createElement("ul")
   var initialList = document.createElement("li")
   
-  localStorage.setItem("High Score", scoreEl);
-  body.appendChild(scoreList)
+  localStorage.setItem(timeLeft, initials);
+
+  initialsBTN.addEventListener("click", saveScore);
 }
