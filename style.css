@@ -86,3 +86,8 @@ h2 {
     justify-content: center;
     font-size: 30px;
 }
+
+#initial-input {
+    margin-left: 770px;
+    font-size: 20px;
+}
