@@ -1,5 +1,5 @@
 
-
+//Variables for the JS
 var timerEl = document.getElementById("time");
 var startBtn = document.getElementById("start-btn");
 var questionCont = document.getElementById("questions-container");
@@ -16,7 +16,7 @@ var scoreBtn = document.getElementById("scores");
 var shuffledQuestions, currentQuestionIndex
 
 
-
+//Arrays of questions to use in the quiz
 var questions = [
   {
     question: "Commonly used data types DO NOT include: ",
@@ -66,6 +66,8 @@ var questions = [
 
 ]
 
+
+//Timer function and variables to run the timer for the quiz
 var timeLeft = 60;
 var timeInterval;
 
@@ -88,19 +90,14 @@ function setTime() {
     }, 1000);
 }
 
-
-startBtn.addEventListener("click", setTime);
-startBtn.addEventListener("click", startGame);
-answerBtnEl.addEventListener("click", nextQuestion)
-
-
+//Function to bring up the next question of the quiz
 function nextQuestion() {
   currentQuestionIndex++
   setNextQuestion()
 }
 
 
-
+//Starts the game and randomizes the questions
 function startGame() {
   startBtn.classList.add("hide");
   shuffledQuestions = questions.sort(() => Math.random() - .5)
@@ -111,12 +108,13 @@ function startGame() {
 
 }
 
+//Uses the next question 
 function setNextQuestion() {
   resetState()
   showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
-
+//Funtionality for selecting the answer
 function showQuestion(question) {
   questionEl.innerText = question.question
   question.answers.forEach(answer => {
@@ -130,14 +128,14 @@ function showQuestion(question) {
     answerBtnEl.appendChild(button)
   })
 }
-
+//Resets the page to remove the last question
 function resetState () {
   while (answerBtnEl.firstChild) {
     answerBtnEl.removeChild (answerBtnEl.firstChild)
   }
 }
 
-
+//Function to determine the answer is correct or not
 function selectAnswer(e) {
 var selectedBtn = e.target
 var correct = selectedBtn.dataset.correct
@@ -148,8 +146,6 @@ Array.from(answerBtnEl.children).forEach(button => {
 if (shuffledQuestions.length > currentQuestionIndex + 1) {
   setNextQuestion()
 } else {
-  //startBtn.innerText = "Go Back"
-  //selectedBtn.classList.remove("hide")
   questionCont.classList.add("hide");
   highscores.classList.remove("hide");
   quizEnd()
@@ -157,6 +153,8 @@ if (shuffledQuestions.length > currentQuestionIndex + 1) {
 }
 }
 
+
+//Ends the quiz and brings up the final page
 function quizEnd() {
   clearInterval(timeInterval);
   scoreEl.textContent = timeLeft;
@@ -171,11 +169,13 @@ function setStatusClass(element, correct) {
   }
 }
 
+//Clears status applied
 function clearStatusClass(element) {
   element.classList.remove("correct")
   element.classList.remove("wrong")
 }
 
+//Saves the score and initials
 function saveScore () {
   var initials = document.getElementById("initial-input").value;
   var scoreList = document.createElement("ul")
@@ -185,3 +185,8 @@ function saveScore () {
 
   initialsBTN.addEventListener("click", saveScore);
 }
+
+//Click events for the buttons on the quiz
+startBtn.addEventListener("click", setTime);
+startBtn.addEventListener("click", startGame);
+answerBtnEl.addEventListener("click", nextQuestion)
