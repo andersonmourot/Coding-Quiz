@@ -102,7 +102,7 @@ function setTime() {
 //Function to bring up the next question of the quiz
 function nextQuestion() {
   currentQuestionIndex++
-  setNextQuestion()
+  nextQuestion()
 }
 
 
