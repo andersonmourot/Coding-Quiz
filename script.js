@@ -111,7 +111,7 @@ function startGame() {
   startBtn.classList.add("hide");
   questionCont.classList.remove("hide");
   intro.classList.add("hide");
-  setNextQuestion();
+  showQuestion();
 
 }
 
@@ -119,11 +119,11 @@ function startGame() {
 //Funtionality for selecting the answer
 function showQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
-  questionEl.textContent = currentQuestion.question;
-  buttonA.textContent = questions[currentQuestionIndex].answers[0].text;
-  buttonB.textContent = questions[currentQuestionIndex].answers[1].text;
-  buttonC.textContent = questions[currentQuestionIndex].answers[2].text;
-  buttonD.textContent = questions[currentQuestionIndex].answers[3].text;
+    questionEl.textContent = currentQuestion.question;
+    buttonA.textContent = questions[currentQuestionIndex].answers[0].text;
+    buttonB.textContent = questions[currentQuestionIndex].answers[1].text;
+    buttonC.textContent = questions[currentQuestionIndex].answers[2].text;
+    buttonD.textContent = questions[currentQuestionIndex].answers[3].text;
 };
 
 
