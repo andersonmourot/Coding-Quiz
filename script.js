@@ -11,13 +11,14 @@ var scoreEl = document.getElementById("score");
 var input = document.querySelector("input");
 var initialsBTN = document.getElementById("initials-button");
 var scoreBtn = document.getElementById("scores");
+var alertEl = document.getElementById("alert");
 
-var buttonA = document.getElementById("answer-A")
-var buttonB = document.getElementById("answer-B")
-var buttonC = document.getElementById("answer-C")
-var buttonD = document.getElementById("answer-D")
+var buttonA = document.getElementById("answer-A");
+var buttonB = document.getElementById("answer-B");
+var buttonC = document.getElementById("answer-C");
+var buttonD = document.getElementById("answer-D");
 
-var shuffledQuestions, currentQuestionIndex
+var currentQuestionIndex = 0;
 
 
 //Arrays of questions to use in the quiz
@@ -132,12 +133,17 @@ function selectAnswer(selected) {
   var correctAnswer = questions[currentQuestionIndex].correctAns;
   console.log(correctAnswer)
   if (selected === correctAnswer) {
-    alert("please work");
+    alertEl.textContent = "Correct!";
     timeLeft += 5;
   } else {
-    alert("I mean it");
+    alertEl.textContent = "Incorrect!";
     timeLeft -= 10;
   };
+
+  alertEl.setAttribute("class", "feedback");
+    setTimeout(function () {
+      alertEl.setAttribute("class", "feedback hide");
+    }, 1000);
 
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++
