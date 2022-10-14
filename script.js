@@ -136,10 +136,10 @@ function selectAnswer(selected) {
   var correctAnswer = questions[currentQuestionIndex].correctAns;
   console.log(correctAnswer)
   if (selected === correctAnswer) {
-    alertEl.textContent = "Correct!";
+    //alertEl.textContent = "Correct!";
     timeLeft += 5;
   } else {
-    alertEl.textContent = "Incorrect!";
+    //alertEl.textContent = "Incorrect!";
     timeLeft -= 5;
   };
 
