@@ -1,6 +1,7 @@
-
 /*Universal formatting*/
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
     font-family: sans-serif;
 }
@@ -42,7 +43,7 @@ h1 {
 
 /*Scores id formatting*/
 #scores {
-color: rgb(192, 121, 192)
+    color: rgb(192, 121, 192)
 }
 
 
@@ -54,11 +55,12 @@ color: rgb(192, 121, 192)
 
 
 /*Main button formatting*/
-.button-list > button {
+.button-list>button {
     display: grid;
     font-size: 30px;
     margin-top: 5px;
-    margin-left: 15px;;
+    margin-left: 15px;
+    ;
     border-radius: 10px;
     padding: 10px;
 }
@@ -83,14 +85,15 @@ color: rgb(192, 121, 192)
 
 #question {
     font-size: 30px;
-    margin: 15px;;
+    margin: 15px;
+    ;
 }
 
 /*Start button formatting*/
 #start-btn {
     font-size: 30px;
     margin-top: 5px;
-    margin-left: 15px;;
+    margin-left: 15px;
     border-radius: 10px;
     padding: 10px;
 }
@@ -103,7 +106,10 @@ h2 {
 
 /*Input box formatting*/
 #initial-input {
-    margin-left: 680px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-left: 0px;
     font-size: 20px;
 }
 

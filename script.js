@@ -12,7 +12,7 @@ var input = document.querySelector("input");
 var initialsBTN = document.getElementById("initials-button");
 var scoreBtn = document.getElementById("scores");
 var alertEl = document.getElementById("alert");
-
+var scoreList = document.getElementById("high-scores");
 var buttonA = document.getElementById("answer-A");
 var buttonB = document.getElementById("answer-B");
 var buttonC = document.getElementById("answer-C");
@@ -92,6 +92,9 @@ function setTime() {
       timerEl.textContent = "Time: " + timeLeft;
       timeLeft--;
 
+    } else if (timeLeft === 0) {
+      quizEnd();
+
     } else {
       timerEl.textContent = '';
       clearInterval(timeInterval);
@@ -120,11 +123,11 @@ function startGame() {
 //Funtionality for selecting the answer
 function showQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
-    questionEl.textContent = currentQuestion.question;
-    buttonA.textContent = questions[currentQuestionIndex].answers[0].text;
-    buttonB.textContent = questions[currentQuestionIndex].answers[1].text;
-    buttonC.textContent = questions[currentQuestionIndex].answers[2].text;
-    buttonD.textContent = questions[currentQuestionIndex].answers[3].text;
+  questionEl.textContent = currentQuestion.question;
+  buttonA.textContent = questions[currentQuestionIndex].answers[0].text;
+  buttonB.textContent = questions[currentQuestionIndex].answers[1].text;
+  buttonC.textContent = questions[currentQuestionIndex].answers[2].text;
+  buttonD.textContent = questions[currentQuestionIndex].answers[3].text;
 };
 
 
@@ -137,13 +140,13 @@ function selectAnswer(selected) {
     timeLeft += 5;
   } else {
     alertEl.textContent = "Incorrect!";
-    timeLeft -= 10;
+    timeLeft -= 5;
   };
 
   alertEl.setAttribute("class", "feedback");
-    setTimeout(function () {
-      alertEl.setAttribute("class", "feedback hide");
-    }, 1000);
+  setTimeout(function () {
+    alertEl.setAttribute("class", "feedback hide");
+  }, 1000);
 
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++
@@ -151,13 +154,22 @@ function selectAnswer(selected) {
   } else {
     questionCont.classList.add("hide");
     highscores.classList.remove("hide");
+    scoreList.classList.remove("hide");
     quizEnd()
     saveScore()
   }
 };
 
+function displayScores() {
+  var scoreArray = JSON.parse(localStorage.getItem("HighScores")) || []
+  scoreArray.forEach(function (element) {
+    var scoreLI = document.createElement("li");
+    scoreLI.textContent = "Name: " + element.name + " " + "Score: " + element.score;
+    scoreList.append(scoreLI);
+  })
+}
 
-//Ends the quiz and brings up the final page
+//Ends the quiz and brings up the final screen
 function quizEnd() {
   clearInterval(timeInterval);
   scoreEl.textContent = timeLeft;
@@ -167,29 +179,37 @@ function quizEnd() {
 //Saves the score and initials
 function saveScore() {
   var initials = document.getElementById("initial-input").value;
-  var scoreList = document.createElement("ul")
-  var initialList = document.createElement("li")
-
-  localStorage.setItem(timeLeft, initials);
-
-  initialsBTN.addEventListener("click", saveScore);
+  var scoreArray = JSON.parse(localStorage.getItem("HighScores")) || []
+  if (initials !== "") {
+    var newScore = { name: initials, score: timeLeft }
+    scoreArray.push(newScore)
+    localStorage.setItem("HighScores", JSON.stringify(scoreArray));
+  }
+  var latestScore = scoreArray[scoreArray.length - 1];
+  var latestLi = document.createElement("li");
+  latestLi.textContent =  "Name: " + latestScore.name + " " + "Score: " + latestScore.score;
+  console.log(latestScore);
+  scoreList.append(latestLi);
 }
+
+initialsBTN.onclick = saveScore;
 
 
 //Click events for the buttons on the quiz
-buttonA.addEventListener("click", function(){
+buttonA.addEventListener("click", function () {
   selectAnswer(buttonA.textContent);
 }),
-buttonB.addEventListener("click", function(){
-  selectAnswer(buttonB.textContent);
-}),
-buttonC.addEventListener("click", function(){
-  selectAnswer(buttonC.textContent);
-}),
-buttonD.addEventListener("click", function(){
-  selectAnswer(buttonD.textContent);
-}),
+  buttonB.addEventListener("click", function () {
+    selectAnswer(buttonB.textContent);
+  }),
+  buttonC.addEventListener("click", function () {
+    selectAnswer(buttonC.textContent);
+  }),
+  buttonD.addEventListener("click", function () {
+    selectAnswer(buttonD.textContent);
+  }),
 
 
+  displayScores();
 startBtn.addEventListener("click", setTime);
 startBtn.addEventListener("click", startGame);
